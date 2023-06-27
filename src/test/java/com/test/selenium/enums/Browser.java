@@ -1,4 +1,4 @@
-package com.test.orchestrationlayer.enums;
+package com.test.selenium.enums;
 
 public enum Browser {
     CHROME,
