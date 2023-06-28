@@ -6,6 +6,7 @@ public class LoginActions extends Login {
 
     public void enterUser(String value) {
         enterValue(txtUser, value);
+        
     }
 
     public void enterPassword(String value) {
@@ -17,7 +18,7 @@ public class LoginActions extends Login {
     }
     
     public String returnPageTitle() {
-    	waitFor(6500);
+    	waitFor(6500);	
     	return getPageTitle();
     }
 

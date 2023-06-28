@@ -19,11 +19,14 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 
 public class FrameworkUtils {
 
     protected WebDriver driver = DriverManager.getInstance().getDriver();
+    protected static Properties pageTitleProperties = Settings.getPageTitle();
+    
 
     /*    Function to attach screen shot to Extent report
           @param  : Cucumber Scenario
@@ -35,6 +38,7 @@ public class FrameworkUtils {
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
         scenario.attach(fileContent, "image/png", "screenshot");
+        
 
     }
     

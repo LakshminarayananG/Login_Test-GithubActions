@@ -31,8 +31,8 @@ public class GeneralComponents extends FrameworkUtils {
         @param : String Username and parameter
     */
 
-    public void login(String userName,String password,String pageTitle) throws InterruptedException{
-    	Assert.assertEquals(pageTitle, login.returnPageTitle());
+    public void login(String userName,String password) throws InterruptedException{
+    	Assert.assertEquals(pageTitleProperties.getProperty("LoginPage"), login.returnPageTitle());
         login.enterUser(userName);
         login.enterPassword(password);
         login.clickSubmit();
@@ -44,8 +44,9 @@ public class GeneralComponents extends FrameworkUtils {
      * Function to validate the landing page after login
      */
     
-    public void validateLandingAfterLogin(String pageTitle) {
-    	Assert.assertEquals(pageTitle, login.returnPageTitle());
+    public void validateLandingAfterLogin() {
+    	validateTextCase(pageTitleProperties.getProperty("LandingPage"), login.returnPageTitle());
+    	Assert.assertEquals(pageTitleProperties.getProperty("LandingPage"), login.returnPageTitle());
     	waitUntilElementVisible(login.loginSuccess, 20);
     	validateTextCase(getScenarioContext(Context.USERNAME), getText(login.loginSuccess));
     	

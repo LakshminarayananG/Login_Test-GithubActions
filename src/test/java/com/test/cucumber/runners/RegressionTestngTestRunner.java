@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 
 
 @CucumberOptions(features = "src/test/java/com/test/cucumber/features" , glue = "com.test.cucumber.stepdefinitions" ,
-        tags = ("@Regression"), plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+        tags = ("@CreateArea"), plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 
 public class RegressionTestngTestRunner extends AbstractTestNGCucumberTests {
     @Override
