@@ -2,12 +2,13 @@ name: CI-Docker
 
 on:
   schedule:
-    - cron: '23 20 * * *'
+    - cron: '56 14 * * *'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/JIRA-001-login-test'
 
     steps:
       - name: Checkout code
