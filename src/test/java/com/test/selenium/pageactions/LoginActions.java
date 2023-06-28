@@ -15,6 +15,11 @@ public class LoginActions extends Login {
     public void clickSubmit() {
         click(btnSignin);
     }
+    
+    public String returnPageTitle() {
+    	waitFor(6500);
+    	return getPageTitle();
+    }
 
 
 }

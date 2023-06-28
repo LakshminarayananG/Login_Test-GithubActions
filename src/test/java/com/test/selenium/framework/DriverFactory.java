@@ -12,6 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
 
@@ -30,8 +31,10 @@ public class DriverFactory {
                 options.addArguments("--remote-allow-origins=*");
                 options.setCapability("se:recordVideo", true);
                 options.setCapability("se:screenResolution", "1920x1080");
+                options.setCapability("pageLoadStrategy", "normal");
                 driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
                 break;
             case CHROME_HEADLESS:
                 WebDriverManager.chromedriver().setup(); // method to get the webdriver dynamically
@@ -40,13 +43,16 @@ public class DriverFactory {
                 chOptions.addArguments("--incognito");
                 chOptions.addArguments("--remote-allow-origins=*");
                 chOptions.addArguments("--window-size=1920,1080");
+                chOptions.setCapability("pageLoadStrategy", "normal");
                 driver = new ChromeDriver(chOptions);
                 driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
                 break;
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
                 break;
 
             default:
@@ -69,10 +75,12 @@ public class DriverFactory {
                     RemoteChOptions.setCapability("se:recordVideo", true);
                     RemoteChOptions.setCapability("se:screenResolution", "1920x1080");
                     RemoteChOptions.setCapability("applicationCacheEnabled", false);
+                    RemoteChOptions.setCapability("pageLoadStrategy", "normal");
                 }
                 try {
                     String url = globalProperties.getProperty("remoteDriverUrl");
                     driver = new RemoteWebDriver(new URL(url), RemoteChOptions);
+                    driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
                 }catch (MalformedURLException e){
                     e.printStackTrace();
                 }
@@ -86,10 +94,12 @@ public class DriverFactory {
                     RemoteFFOptions.setCapability("se:recordVideo", true);
                     RemoteFFOptions.setCapability("se:screenResolution", "1920x1080");
                     RemoteFFOptions.setCapability("applicationCacheEnabled", false);
+                    RemoteFFOptions.setCapability("pageLoadStrategy", "normal");
                 }
                 try {
                     String url = globalProperties.getProperty("remoteDriverUrl");
                     driver = new RemoteWebDriver(new URL(url), RemoteFFOptions);
+                    driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
                 }catch (MalformedURLException e){
                     e.printStackTrace();
                 }
@@ -103,10 +113,12 @@ public class DriverFactory {
                 RemoteEdOptions.setCapability("se:recordVideo", true);
                 RemoteEdOptions.setCapability("se:screenResolution", "1920x1080");
                 RemoteEdOptions.setCapability("applicationCacheEnabled", false);
+                RemoteEdOptions.setCapability("pageLoadStrategy", "normal");
             }
             try {
                 String url = globalProperties.getProperty("remoteDriverUrl");
                 driver = new RemoteWebDriver(new URL(url), RemoteEdOptions);
+                driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
             }catch (MalformedURLException e){
                 e.printStackTrace();
             }

@@ -2,3 +2,6 @@
 target/*
 target/classes/META-INF/maven/testo-login-test/testo-login-test/pom.properties
 target/classes/META-INF/maven/testo-login-test/testo-login-test/pom.xml
+test-output/All Test Suite/Regression Suite.html
+target/*
+test-output/*

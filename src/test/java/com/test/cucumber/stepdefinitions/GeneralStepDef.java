@@ -2,11 +2,10 @@ package com.test.cucumber.stepdefinitions;
 
 import com.test.selenium.businesscomponents.GeneralComponents;
 import com.test.selenium.pageactions.LoginActions;
-import com.test.selenium.pageactions.OrderConfirmationActions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
-public class GeneralStepDef extends OrderConfirmationActions {
+public class GeneralStepDef {
 
     GeneralComponents general = new GeneralComponents();
     LoginActions login = new LoginActions();
@@ -17,10 +16,16 @@ public class GeneralStepDef extends OrderConfirmationActions {
 
     }
 
-    @And("^I login to the application using (.+) and (.+)$")
-    public void login_to_the_application(String userName, String password) throws InterruptedException{
-        general.login(userName,password);
+    @And("^I login to the application using (.+), (.+) and validate (.+)$")
+    public void login_to_the_application(String userName, String password, String pageTitle) throws InterruptedException{
+        general.login(userName,password,pageTitle);
     }
+    
+    @And("^I am in the (.+) page and validate if the login is with right user$")
+    public void validateLandingPageAfterLogin(String pageTitle) throws InterruptedException{
+        general.validateLandingAfterLogin(pageTitle);
+    }
+    
 
 
 }

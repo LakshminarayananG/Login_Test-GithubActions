@@ -37,6 +37,10 @@ public class FrameworkUtils {
         scenario.attach(fileContent, "image/png", "screenshot");
 
     }
+    
+    
+    
+    
 
     /*    Function to add message to log and Extent report
           @param  : String message
@@ -271,6 +275,21 @@ public class FrameworkUtils {
             addStepError("Actual Text : " + actual + " is not same as expected : " + expected);
 
     }
+    
+    /*    Function to Validate if Element present
+    @param  : By
+    @return : n/a
+    @Author : Lakshminarayanan Ganesan
+*/
+
+	protected void validateTextCase(String actual , String expected) {
+	
+	  if (actual.equalsIgnoreCase(expected))
+	      addStepLog("Actual and Expected text match : " + actual);
+	  else
+	      addStepError("Actual Text : " + actual + " is not same as expected : " + expected);
+	
+	}
 
     protected void validateTextContains(String actual , String expected) {
 
@@ -320,6 +339,18 @@ public class FrameworkUtils {
 
     }
 
+    
+    /*    Function to return the page title
+    @param  : Cucumber Scenario
+    @return : n/a
+    @Author : Lakshminarayanan Ganesan
+*/
+
+	protected String getPageTitle() {
+		String pagetitle = driver.getTitle();
+		System.out.println(pagetitle);
+	  return pagetitle;
+	}
 
 }
 
