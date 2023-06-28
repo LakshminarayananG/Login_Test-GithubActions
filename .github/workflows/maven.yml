@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/JIRA-001-login-test'
 
     steps:
       - name: Checkout code
