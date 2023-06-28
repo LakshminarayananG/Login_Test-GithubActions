@@ -10,15 +10,15 @@ public class GeneralStepDef {
     GeneralComponents general = new GeneralComponents();
     LoginActions login = new LoginActions();
 
-    @Given ("^I launch the (.+)$")
-    public void i_launch_the_application(String application) throws InterruptedException {
-        general.launchApplication(application);
+    @Given ("^I launch the application$")
+    public void i_launch_the_application() throws InterruptedException {
+        general.launchApplication();
 
     }
     
-    @And("^I login to the application using (.+), (.+) and validate Login page Title$")
-    public void login_to_the_application(String userName, String password) throws InterruptedException{
-        general.login(userName,password);
+    @And("^I login to the application using and validate Login page Title$")
+    public void login_to_the_application() throws InterruptedException{
+        general.login();
     }
     
     @And("^I am in the Dashboard page and validate if the login is with right user$")

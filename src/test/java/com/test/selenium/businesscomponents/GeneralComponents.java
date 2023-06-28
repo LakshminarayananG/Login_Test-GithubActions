@@ -17,9 +17,9 @@ public class GeneralComponents extends FrameworkUtils {
         @param : application name
     */
 
-    public void launchApplication(String application){
+    public void launchApplication(){
         String url = null;
-        url = globalProperties.getProperty(application);
+        url = globalProperties.getProperty("application");
         if (url == null)
             addStepError("Application URL is not defined");
         driver.get(url);
@@ -31,12 +31,12 @@ public class GeneralComponents extends FrameworkUtils {
         @param : String Username and parameter
     */
 
-    public void login(String userName,String password) throws InterruptedException{
+    public void login() throws InterruptedException{
     	Assert.assertEquals(pageTitleProperties.getProperty("LoginPage"), login.returnPageTitle());
-        login.enterUser(userName);
-        login.enterPassword(password);
+        login.enterUser(globalProperties.getProperty("userName"));
+        login.enterPassword(globalProperties.getProperty("password"));
         login.clickSubmit();
-        setScenarioContext(Context.USERNAME, userName);
+        setScenarioContext(Context.USERNAME, globalProperties.getProperty("userName"));
         waitForPageLoad(20);
     }
     
