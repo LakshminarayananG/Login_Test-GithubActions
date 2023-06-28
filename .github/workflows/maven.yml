@@ -1,0 +1,39 @@
+name: CI-Docker
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and start Docker Compose services
+        run: |
+          docker-compose -f docker-compose.yml up -d
+      - name: Wait for services to start
+        run: sleep 10
+
+      - name: Run Maven tests
+        run: mvn clean test -PrunRegressionTest
+
+      - name: Stop Docker Compose services
+        run: |
+          docker-compose -f docker-compose.yml down
+
+      - name: archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Extent Report
+          path: ./Reports
+
+      
