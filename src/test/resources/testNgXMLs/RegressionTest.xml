@@ -8,7 +8,7 @@
           name="Regression Suite">
         <classes>
             <class name="com.test.cucumber.runners.RegressionTestngTestRunner" />
-            <parameter name="executionMode" value="LOCAL"></parameter>
+            <parameter name="executionMode" value="GRID"></parameter>
             <parameter name="browser" value="CHROME"></parameter>
         </classes>
     </test>
