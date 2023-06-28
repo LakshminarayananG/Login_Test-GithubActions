@@ -40,6 +40,28 @@
         </plugins>
       </build>
     </profile>
+    <!-- to run one of the profiles defined below, simply add -P name_of_the_profile
+        to mvn command ie.: mvn clean test -P runRegressionTest -->
+    <profile>
+      <id>runLoginTest</id>
+      <properties>
+        <testNG.suiteXmlFile>src/test/resources/testNgXMLs/RegressionTest.xml</testNG.suiteXmlFile>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>${testNG.suiteXmlFile}</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
   
   
