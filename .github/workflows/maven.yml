@@ -2,8 +2,7 @@ name: CI-Docker
 
 on:
   schedule:
-    - cron: '30 20 * * *'
-    - timezone: 'Kolkata/India'
+    - cron: '03 15 * * *'
   workflow_dispatch:
 
 jobs:
