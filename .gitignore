@@ -5,3 +5,7 @@ target/classes/META-INF/maven/testo-login-test/testo-login-test/pom.xml
 test-output/All Test Suite/Regression Suite.html
 target/*
 test-output/*
+.classpath
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.jdt.core.prefs
+target/classes/META-INF/maven/testo-login-test/testo-login-test/pom.properties
