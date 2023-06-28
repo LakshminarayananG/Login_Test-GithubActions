@@ -1,44 +1,43 @@
-usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           [--config-env=<name>=<envvar>] <command> [<args>]
+# Test Login
 
-These are common Git commands used in various situations:
+## Steps to execute the Test
 
-start a working area (see also: git help tutorial)
-   clone     Clone a repository into a new directory
-   init      Create an empty Git repository or reinitialize an existing one
+1. From command line   : mvn clean test -PrunRegressionTest    ( make sure Java and maven are installed in the machine)
 
-work on the current change (see also: git help everyday)
-   add       Add file contents to the index
-   mv        Move or rename a file, a directory, or a symlink
-   restore   Restore working tree files
-   rm        Remove files from the working tree and from the index
+2. Using an IDE (Eclipse or Intellij )    : Run from the TestNG file in the path src/test/resources/TestNGXMLs/ (use RegressionTest.xml for regression tests and SmokeTest.xml for smoke tests)
 
-examine the history and state (see also: git help revisions)
-   bisect    Use binary search to find the commit that introduced a bug
-   diff      Show changes between commits, commit and working tree, etc
-   grep      Print lines matching a pattern
-   log       Show commit logs
-   show      Show various types of objects
-   status    Show the working tree status
+3. Parallel execution can be achieved by modifying the data-provider-thread-count value in the testing XML file (Grid configurations yet to be done. However parallel execution in a single machine can be achieved )
 
-grow, mark and tweak your common history
-   branch    List, create, or delete branches
-   commit    Record changes to the repository
-   merge     Join two or more development histories together
-   rebase    Reapply commits on top of another base tip
-   reset     Reset current HEAD to the specified state
-   switch    Switch branches
-   tag       Create, list, delete or verify a tag object signed with GPG
 
-collaborate (see also: git help workflows)
-   fetch     Download objects and refs from another repository
-   pull      Fetch from and integrate with another repository or a local branch
-   push      Update remote refs along with associated objects
+## Reports
 
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
+Extent HTML and Spark reports are configured and will be available in /Reports folder
+
+
+## Configuration related to automation design
+
+This is a hybrid framework buit using different component - Selenium with Java Binding , TestNG , Cucumber , Page Object Model , Singleton and factory design pattern with extent report
+
+1. Property files in src/test/resources/ path
+	-Application url and other application related properties are maintained in GlobalSettings.properties file
+	-Extent , cucumber reporting configs maintained in corresponding property files
+
+2. Execution Mode and Browser parameters are maintained in TestNG XMLS and valid values in enum (src/test/java/com.test.selenium.enums) should be used
+
+3. Cucumber framework related components (Feature , Stepdefinition, runner files) maintained in package com.test.cucumber
+
+4. Selenium framework related components maintained in package com.test.selenium
+
+5. Design Framework hierarchy (multi level inheritance) is maintained as below
+
+	FrameworkUtils --> pagelocators --> pageactions --> businesscomponents --> stepdefinitions 
+
+6. CukeHooks class is used to manage the @Before and @After Scenario functions related to cucumber scenario logic
+
+7. TestNG listener is the core driving component used to control the flow of execution
+
+8. WebDriverManager Used for picking the driver file automatically
+
+9. Can be easily integrated with Azure / AWS / Jenkins or any pipeline using the maven command provided in step 1 after git clone (parameterising can also be done)
+
+10. Github actions is configured to run the login test on a daily basis inside a docker container
